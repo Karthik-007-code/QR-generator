@@ -18,5 +18,13 @@ def root():
 
 @app.get("/login",HTMLResponse=True)
 def login():
-    return HTMLResponse()
+    return HTMLResponse("templates/login.html")
+
+@app.get("/signup",HTMLResponse=True)
+def signup():
+    return HTMLResponse("templates/sign-up.html")
+    
+# @app.post("/login",username=username,password=password)
+# def login_post(username:str,password:str):
+   
     

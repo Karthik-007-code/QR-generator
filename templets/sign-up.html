@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Login &mdash; QR Generator</title>
-  <meta name="description" content="Sign in to your QR Code Generator account to create, customize, and manage dynamic QR codes." />
+  <title>Sign Up &mdash; QR Generator</title>
+  <meta name="description" content="Create your QR Code Generator account to design, customize, and track dynamic QR codes." />
 
   <!-- Google Fonts: Plus Jakarta Sans -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -14,7 +14,7 @@
   <style>
     /* ============================================================
        Design System & Variables
-       Palette requested:
+       Palette:
          - #5D7B6F (Deep Sage / Primary Brand)
          - #A4C3A2 (Moss Green / Secondary Accent)
          - #B0D4B8 (Celadon Mint / Focus & Highlight)
@@ -35,12 +35,12 @@
       --text-muted: #5d746b;
       --text-light: #7a9188;
 
-      --card-bg: rgba(244, 242, 230, 0.82);
+      --card-bg: rgba(244, 242, 230, 0.85);
       --card-border: rgba(176, 212, 184, 0.65);
       --card-shadow: 0 24px 60px -12px rgba(93, 123, 111, 0.22),
                      0 12px 24px -8px rgba(93, 123, 111, 0.12);
 
-      --input-bg: rgba(255, 255, 255, 0.85);
+      --input-bg: rgba(255, 255, 255, 0.88);
       --input-border: #B0D4B8;
       --input-focus-ring: rgba(93, 123, 111, 0.25);
 
@@ -73,13 +73,13 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 24px;
+      padding: 32px 20px;
       position: relative;
       overflow-x: hidden;
       accent-color: var(--color-primary);
     }
 
-    /* Ambient Decorative Blobs */
+    /* Ambient Background Blobs */
     .bg-blob {
       position: fixed;
       border-radius: 50%;
@@ -91,16 +91,16 @@
     }
 
     .bg-blob-1 {
-      width: 420px;
-      height: 420px;
+      width: 440px;
+      height: 440px;
       background: var(--color-cream);
       top: -100px;
       left: -80px;
     }
 
     .bg-blob-2 {
-      width: 480px;
-      height: 480px;
+      width: 500px;
+      height: 500px;
       background: var(--color-secondary);
       bottom: -120px;
       right: -100px;
@@ -108,11 +108,11 @@
     }
 
     .bg-blob-3 {
-      width: 320px;
-      height: 320px;
+      width: 340px;
+      height: 340px;
       background: var(--color-mint);
-      top: 50%;
-      left: 65%;
+      top: 45%;
+      left: 70%;
       transform: translate(-50%, -50%);
       opacity: 0.45;
       animation-delay: -9s;
@@ -127,59 +127,59 @@
       }
     }
 
-    /* Container / Card */
-    .login-container {
+    /* Main Container */
+    .signup-container {
       position: relative;
       z-index: 1;
       width: 100%;
-      max-width: 440px;
+      max-width: 480px;
       margin: auto;
     }
 
-    .login-card {
+    .signup-card {
       background: var(--card-bg);
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
       border: 1px solid var(--card-border);
       border-radius: var(--radius-lg);
-      padding: 40px 36px;
+      padding: 36px 34px;
       box-shadow: var(--card-shadow);
       transition: var(--transition-standard);
     }
 
-    /* Header Section */
+    /* Header */
     .card-header {
       text-align: center;
-      margin-bottom: 32px;
+      margin-bottom: 26px;
     }
 
     .brand-badge {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      width: 60px;
-      height: 60px;
+      width: 58px;
+      height: 58px;
       border-radius: 16px;
       background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
       color: #ffffff;
       box-shadow: 0 8px 20px -4px rgba(93, 123, 111, 0.4);
-      margin-bottom: 18px;
+      margin-bottom: 16px;
       transition: var(--transition-standard);
     }
 
     .brand-badge:hover {
-      transform: translateY(-2px) rotate(4deg);
+      transform: translateY(-2px) rotate(-4deg);
       box-shadow: 0 12px 24px -4px rgba(93, 123, 111, 0.5);
     }
 
     .brand-badge svg {
-      width: 32px;
-      height: 32px;
+      width: 30px;
+      height: 30px;
       fill: currentColor;
     }
 
     .card-title {
-      font-size: 1.75rem;
+      font-size: 1.7rem;
       font-weight: 700;
       color: var(--color-primary);
       letter-spacing: -0.02em;
@@ -187,23 +187,23 @@
     }
 
     .card-subtitle {
-      font-size: 0.925rem;
+      font-size: 0.9rem;
       color: var(--text-muted);
-      line-height: 1.45;
+      line-height: 1.4;
     }
 
-    /* Form Fields */
+    /* Form Layout */
     .form-group {
-      margin-bottom: 20px;
+      margin-bottom: 18px;
       position: relative;
     }
 
     .form-label {
       display: block;
-      font-size: 0.85rem;
+      font-size: 0.835rem;
       font-weight: 600;
       color: var(--text-main);
-      margin-bottom: 8px;
+      margin-bottom: 7px;
       letter-spacing: 0.01em;
     }
 
@@ -229,10 +229,10 @@
 
     .form-input {
       width: 100%;
-      height: 48px;
+      height: 46px;
       padding: 0 16px 0 44px;
       font-family: inherit;
-      font-size: 0.95rem;
+      font-size: 0.935rem;
       color: var(--text-main);
       background: var(--input-bg);
       border: 1.5px solid var(--input-border);
@@ -244,7 +244,7 @@
 
     .form-input::placeholder {
       color: var(--text-light);
-      font-size: 0.9rem;
+      font-size: 0.875rem;
     }
 
     .form-input:hover {
@@ -263,7 +263,7 @@
       transform: scale(1.08);
     }
 
-    /* Password Toggle Button */
+    /* Password Toggle */
     .password-toggle {
       position: absolute;
       right: 12px;
@@ -289,50 +289,28 @@
       height: 18px;
     }
 
-    /* Remember & Forgot Row */
-    .form-meta {
+    /* Validation Feedback Message */
+    .match-status {
+      font-size: 0.775rem;
+      margin-top: 6px;
+      display: none;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .match-status.mismatch {
       display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-top: 4px;
-      margin-bottom: 24px;
-      font-size: 0.85rem;
+      color: #c94a29;
     }
 
-    .remember-label {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      cursor: pointer;
-      color: var(--text-muted);
-      user-select: none;
-      font-weight: 500;
-    }
-
-    .remember-checkbox {
-      width: 16px;
-      height: 16px;
-      accent-color: var(--color-primary);
-      cursor: pointer;
-      border-radius: 4px;
-    }
-
-    .forgot-link {
-      color: var(--color-primary);
-      text-decoration: none;
-      font-weight: 600;
-      transition: var(--transition-standard);
-      position: relative;
-    }
-
-    .forgot-link:hover {
+    .match-status.matched {
+      display: flex;
       color: var(--color-primary-dark);
-      text-decoration: underline;
-      text-underline-offset: 3px;
     }
 
-    /* Primary Submit Button */
+    /* Submit Button */
     .submit-btn {
+      margin-top: 8px;
       width: 100%;
       height: 48px;
       background: var(--color-primary);
@@ -340,7 +318,7 @@
       border: none;
       border-radius: var(--radius-md);
       font-family: inherit;
-      font-size: 0.975rem;
+      font-size: 0.95rem;
       font-weight: 600;
       letter-spacing: 0.01em;
       cursor: pointer;
@@ -350,8 +328,6 @@
       gap: 8px;
       box-shadow: 0 4px 14px rgba(93, 123, 111, 0.35);
       transition: var(--transition-standard);
-      position: relative;
-      overflow: hidden;
     }
 
     .submit-btn:hover {
@@ -379,9 +355,9 @@
     .divider {
       display: flex;
       align-items: center;
-      margin: 28px 0;
+      margin: 24px 0;
       color: var(--text-light);
-      font-size: 0.8rem;
+      font-size: 0.775rem;
       font-weight: 500;
       text-transform: uppercase;
       letter-spacing: 0.05em;
@@ -397,10 +373,10 @@
     }
 
     .divider span {
-      padding: 0 14px;
+      padding: 0 12px;
     }
 
-    /* Social / Quick Action Buttons */
+    /* Social Action Buttons */
     .social-actions {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -436,10 +412,10 @@
       height: 18px;
     }
 
-    /* Footer Note */
+    /* Card Footer */
     .card-footer {
       text-align: center;
-      margin-top: 28px;
+      margin-top: 24px;
       font-size: 0.875rem;
       color: var(--text-muted);
     }
@@ -457,7 +433,7 @@
       text-underline-offset: 3px;
     }
 
-    /* Toast Notification for demonstration */
+    /* Toast Notification */
     .toast {
       position: fixed;
       bottom: 24px;
@@ -485,16 +461,16 @@
       pointer-events: auto;
     }
 
-    /* Mobile Responsive Adjustments */
+    /* Mobile Responsive */
     @media (max-width: 480px) {
       body {
         padding: 16px;
       }
-      .login-card {
-        padding: 30px 22px;
+      .signup-card {
+        padding: 28px 20px;
       }
       .card-title {
-        font-size: 1.5rem;
+        font-size: 1.45rem;
       }
       .social-actions {
         grid-template-columns: 1fr;
@@ -508,12 +484,11 @@
   <div class="bg-blob bg-blob-2" aria-hidden="true"></div>
   <div class="bg-blob bg-blob-3" aria-hidden="true"></div>
 
-  <main class="login-container">
-    <div class="login-card">
+  <main class="signup-container">
+    <div class="signup-card">
       <!-- Card Header -->
       <header class="card-header">
         <div class="brand-badge" aria-label="QR Generator Logo">
-          <!-- Stylized QR Code Icon -->
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <rect x="3" y="3" width="7" height="7"></rect>
             <rect x="14" y="3" width="7" height="7"></rect>
@@ -525,15 +500,37 @@
             <line x1="17" y1="17" x2="17" y2="17"></line>
           </svg>
         </div>
-        <h1 class="card-title">Welcome Back</h1>
-        <p class="card-subtitle">Sign in to manage and generate your QR codes</p>
+        <h1 class="card-title">Create Account</h1>
+        <p class="card-subtitle">Start generating custom QR codes in seconds</p>
       </header>
 
-      <!-- Login Form -->
-      <form id="loginForm" method="POST" action="/login" novalidate>
-        <!-- Email / Username Input -->
+      <!-- Sign Up Form -->
+      <form id="signupForm" method="POST" action="/sign-up" novalidate>
+        <!-- Full Name -->
         <div class="form-group">
-          <label class="form-label" for="usernameOrEmail">Email or Username</label>
+          <label class="form-label" for="fullName">Full Name</label>
+          <div class="input-wrapper">
+            <span class="input-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                <circle cx="12" cy="7" r="4"></circle>
+              </svg>
+            </span>
+            <input
+              type="text"
+              id="fullName"
+              name="fullname"
+              class="form-input"
+              placeholder="Alex Johnson"
+              required
+              autocomplete="name"
+            />
+          </div>
+        </div>
+
+        <!-- Email -->
+        <div class="form-group">
+          <label class="form-label" for="signupEmail">Email Address</label>
           <div class="input-wrapper">
             <span class="input-icon" aria-hidden="true">
               <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -543,19 +540,19 @@
             </span>
             <input
               type="email"
-              id="usernameOrEmail"
-              name="username"
+              id="signupEmail"
+              name="email"
               class="form-input"
-              placeholder="name@example.com"
+              placeholder="alex@example.com"
               required
-              autocomplete="username"
+              autocomplete="email"
             />
           </div>
         </div>
 
-        <!-- Password Input -->
+        <!-- Password -->
         <div class="form-group">
-          <label class="form-label" for="password">Password</label>
+          <label class="form-label" for="signupPassword">Password</label>
           <div class="input-wrapper">
             <span class="input-icon" aria-hidden="true">
               <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -565,12 +562,12 @@
             </span>
             <input
               type="password"
-              id="password"
+              id="signupPassword"
               name="password"
               class="form-input"
-              placeholder="••••••••••••"
+              placeholder="Create a strong password"
               required
-              autocomplete="current-password"
+              autocomplete="new-password"
             />
             <button
               type="button"
@@ -579,7 +576,6 @@
               aria-label="Show password"
               title="Show password"
             >
-              <!-- Eye Icon -->
               <svg id="eyeIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
                 <circle cx="12" cy="12" r="3"></circle>
@@ -588,18 +584,31 @@
           </div>
         </div>
 
-        <!-- Remember Me & Forgot Password -->
-        <div class="form-meta">
-          <label class="remember-label" for="rememberMe">
-            <input type="checkbox" id="rememberMe" name="remember" class="remember-checkbox" />
-            <span>Remember me</span>
-          </label>
-          <a href="#forgot" class="forgot-link">Forgot password?</a>
+        <!-- Confirm Password -->
+        <div class="form-group">
+          <label class="form-label" for="confirmPassword">Confirm Password</label>
+          <div class="input-wrapper">
+            <span class="input-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+              </svg>
+            </span>
+            <input
+              type="password"
+              id="confirmPassword"
+              name="confirm_password"
+              class="form-input"
+              placeholder="Repeat your password"
+              required
+              autocomplete="new-password"
+            />
+          </div>
+          <p id="matchStatus" class="match-status" role="alert"></p>
         </div>
 
         <!-- Submit Button -->
         <button type="submit" id="submitBtn" class="submit-btn">
-          <span>Sign In</span>
+          <span>Create Account</span>
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <line x1="5" y1="12" x2="19" y2="12"></line>
             <polyline points="12 5 19 12 12 19"></polyline>
@@ -607,13 +616,13 @@
         </button>
       </form>
 
-      <!-- Optional Social / Alternative Sign-in -->
+      <!-- Alternative Registration -->
       <div class="divider">
-        <span>or continue with</span>
+        <span>or sign up with</span>
       </div>
 
       <div class="social-actions">
-        <button type="button" class="social-btn" id="googleBtn" aria-label="Sign in with Google">
+        <button type="button" class="social-btn" id="googleBtn" aria-label="Sign up with Google">
           <svg viewBox="0 0 24 24">
             <path fill="#4285F4" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.82-2.4 3.68v3.05h3.88c2.27-2.09 3.66-5.17 3.66-9.17z"/>
             <path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.88-3.05c-1.08.72-2.45 1.16-4.05 1.16-3.12 0-5.77-2.1-6.72-4.93H1.25v3.15C3.26 21.36 7.34 24 12 24z"/>
@@ -622,7 +631,7 @@
           </svg>
           <span>Google</span>
         </button>
-        <button type="button" class="social-btn" id="githubBtn" aria-label="Sign in with GitHub">
+        <button type="button" class="social-btn" id="githubBtn" aria-label="Sign up with GitHub">
           <svg viewBox="0 0 24 24" fill="currentColor">
             <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
           </svg>
@@ -632,7 +641,7 @@
 
       <!-- Footer Info -->
       <footer class="card-footer">
-        <p>Don't have an account? <a href="sign-up.html">Create an account</a></p>
+        <p>Already have an account? <a href="login.html">Sign in here</a></p>
       </footer>
     </div>
   </main>
@@ -643,13 +652,14 @@
       <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
       <polyline points="22 4 12 14.01 9 11.01"></polyline>
     </svg>
-    <span id="toastMsg">Signed in successfully</span>
+    <span id="toastMsg">Account created successfully!</span>
   </div>
 
   <script>
     // Password visibility toggle logic
     const toggleBtn = document.getElementById('togglePassword');
-    const passwordInput = document.getElementById('password');
+    const passwordInput = document.getElementById('signupPassword');
+    const confirmInput = document.getElementById('confirmPassword');
     const eyeIcon = document.getElementById('eyeIcon');
 
     toggleBtn.addEventListener('click', () => {
@@ -658,7 +668,6 @@
       toggleBtn.setAttribute('aria-label', isPassword ? 'Hide password' : 'Show password');
       toggleBtn.setAttribute('title', isPassword ? 'Hide password' : 'Show password');
 
-      // Update icon SVG
       if (isPassword) {
         eyeIcon.innerHTML = `
           <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path>
@@ -672,8 +681,45 @@
       }
     });
 
-    // Form interactive demo handling
-    const loginForm = document.getElementById('loginForm');
+    // Password match check
+    passwordInput.addEventListener('input', checkPasswordMatch);
+
+    const matchStatus = document.getElementById('matchStatus');
+    function checkPasswordMatch() {
+      const p1 = passwordInput.value;
+      const p2 = confirmInput.value;
+
+      if (!p2) {
+        matchStatus.className = 'match-status';
+        matchStatus.textContent = '';
+        return;
+      }
+
+      if (p1 === p2) {
+        matchStatus.className = 'match-status matched';
+        matchStatus.innerHTML = `
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="20 6 9 17 4 12"></polyline>
+          </svg>
+          Passwords match
+        `;
+      } else {
+        matchStatus.className = 'match-status mismatch';
+        matchStatus.innerHTML = `
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"></circle>
+            <line x1="12" y1="8" x2="12" y2="12"></line>
+            <line x1="12" y1="16" x2="12.01" y2="16"></line>
+          </svg>
+          Passwords do not match
+        `;
+      }
+    }
+
+    confirmInput.addEventListener('input', checkPasswordMatch);
+
+    // Form interactive submission
+    const signupForm = document.getElementById('signupForm');
     const toast = document.getElementById('toast');
     const toastMsg = document.getElementById('toastMsg');
 
@@ -685,20 +731,30 @@
       }, 3500);
     }
 
-    loginForm.addEventListener('submit', (e) => {
-      const email = document.getElementById('usernameOrEmail').value.trim();
-      const pass = passwordInput.value.trim();
+    signupForm.addEventListener('submit', (e) => {
+      const name = document.getElementById('fullName').value.trim();
+      const email = document.getElementById('signupEmail').value.trim();
+      const p1 = passwordInput.value;
+      const p2 = confirmInput.value;
 
-      if (!email || !pass) {
+      if (!name || !email || !p1 || !p2) {
         e.preventDefault();
-        showToast('Please enter both your email and password.');
+        showToast('Please fill in all required fields.');
         return;
       }
-      
-      // If running inside static preview, prevent page reload and give visual confirmation
+
+      if (p1 !== p2) {
+        e.preventDefault();
+        showToast('Passwords do not match.');
+        return;
+      }
+
       if (window.location.protocol === 'file:') {
         e.preventDefault();
-        showToast('Demo login validated successfully!');
+        showToast('Demo account registered successfully! Redirecting to login...');
+        setTimeout(() => {
+          window.location.href = 'login.html';
+        }, 1500);
       }
     });
   </script>
