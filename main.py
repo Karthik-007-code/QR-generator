@@ -2,8 +2,12 @@ from fastapi import FastAPI
 from fastapi.responses import HTMLResponse
 from qrcode import make
 from fastapi import status
+from fastapi.templating import Jinja2Templates
+from fastapi import Request
 
 app = FastAPI(title="QR-code Generater")
+
+templates = Jinja2Templates(directory="templets")
 
 
 # routes
@@ -16,14 +20,15 @@ def root():
            }
 
 
-@app.get("/login",HTMLResponse=True)
-def login():
-    return HTMLResponse("templates/login.html")
+@app.get("/login", response_class=HTMLResponse)
+def login(request:Request):
+    return templates.TemplateResponse(name="login.html", request=request)
 
-@app.get("/signup",HTMLResponse=True)
-def signup():
-    return HTMLResponse("templates/sign-up.html")
+@app.get("/signup", response_class=HTMLResponse)
+def signup(request:Request):
+    return templates.TemplateResponse(name="sign-up.html", request=request)
     
+
 # @app.post("/login",username=username,password=password)
 # def login_post(username:str,password:str):
    
