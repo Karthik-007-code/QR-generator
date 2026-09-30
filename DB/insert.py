@@ -1,6 +1,6 @@
 import sqlite3
 from DB.conn import get_connection
-from fastapi import HTTPException
+from fastapi import HTTPException,status
 
 def insertion(user):
     try:
@@ -14,7 +14,7 @@ def insertion(user):
         db_conn.close()
         return {
             "message": "successfully inserted",
-            "status": "200"
+            "status": status.HTTP_201_CREATED
         }
 
     except sqlite3.Error as e:
