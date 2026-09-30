@@ -1,22 +1,27 @@
-from jose import jwt
-from jose.exceptions import JOSEError
-from fastapi import HTTPException, Depends
-from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
+from fastapi import Request
+from jose import jwt, JOSEError
 from dotenv import load_dotenv
 import os
 
 load_dotenv()
 secret_key = os.getenv("SECRET_KEY")
 ALGORITHMN = os.getenv("ALGORITHMN")
-async def get_current_user(credentials: HTTPAuthorizationCredentials = Depends(HTTPBearer())):
+
+async def get_current_user(request: Request) -> str | None:
+    token = request.cookies.get("access_token")
+    if not token:
+        auth_header = request.headers.get("Authorization")
+        if auth_header and auth_header.startswith("Bearer "):
+            token = auth_header.split(" ")[1]
+            
+    if not token:
+        return None
+
     try:
-        payload = jwt.decode(credentials.credentials,secret_key,algorithms=[ALGORITHMN])
+        payload = jwt.decode(token, secret_key, algorithms=[ALGORITHMN])
         email = payload.get("email")
-        if email is None:
-           return None
         return email
-    except JOSEError as e:
-        raise HTTPException(
-            status_code=401,
-            detail=str(e))
+    except JOSEError:
+        return None
+
 

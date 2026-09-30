@@ -7,18 +7,19 @@ def get_user_db(email):
         db_conn = get_connection()
         cursor = db_conn.cursor()
         query = "SELECT * FROM users WHERE email = ?"
-        user=cursor.execute(query, (email,))
-        if user is not None:
+        cursor.execute(query, (email,))
+        row = cursor.fetchone()
+        if row is not None:
             return {
-                "user":user,
-                "status":status.HTTP_200_OK,
-                "message":"user found"
+                "user": dict(row),
+                "status": status.HTTP_200_OK,
+                "message": "user found"
             }
         else:
             return {
-                "user":None,
-                "status":status.HTTP_404_NOT_FOUND,
-                "message":"user not found"
+                "user": None,
+                "status": status.HTTP_404_NOT_FOUND,
+                "message": "user not found"
             }
 
     except sqlite3.Error as e:
@@ -27,4 +28,5 @@ def get_user_db(email):
     finally:
         if db_conn:
             db_conn.close()
+
 
