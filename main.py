@@ -11,18 +11,18 @@ from auth.jwt import create_jwt_token
 from auth.dependency import get_current_user
 
 
-app = FastAPI(title="QR-code Generator")
+app = FastAPI(title="QR_gen")
 
 templates = Jinja2Templates(directory="templets")
 # routes
-@app.get("/")
-def root():
-    return {
-        "Title": "QR-code Generator",
-        "status": status.HTTP_200_OK,
-        "End-point": "/",
-        "documentation": "/docs"
-    }
+@app.get("/", response_class=HTMLResponse)
+def root(request: Request, email: str | None = Depends(get_current_user)):
+    user = None
+    if email:
+        user_res = get_user_db(email)
+        if user_res["status"] == status.HTTP_200_OK:
+            user = user_res["user"]
+    return templates.TemplateResponse(request=request, name="about.html", context={"user": user})
 
 
 @app.get("/login", response_class=HTMLResponse)
