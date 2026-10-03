@@ -512,7 +512,11 @@
         </div>
         <h1 class="card-title">Create Account</h1>
         <p class="card-subtitle">Start generating custom QR codes in seconds</p>
-      </header>
+      {% if error %}
+      <div style="background-color: #fee2e2; border: 1px solid #f87171; color: #991b1b; padding: 12px 16px; border-radius: var(--radius-md); margin-bottom: 20px; font-size: 0.9rem; text-align: center;">
+        {{ error }}
+      </div>
+      {% endif %}
 
       <!-- Sign Up Form -->
       <form id="signupForm" method="POST" action="/signup" novalidate>
@@ -527,7 +531,7 @@
                 <circle cx="12" cy="7" r="4"></circle>
               </svg>
             </span>
-            <input type="text" id="fullName" name="fullname" class="form-input" placeholder="Alex Johnson" required
+            <input type="text" id="fullName" name="fullname" class="form-input" placeholder="Alex Johnson" value="{{ fullname if fullname else '' }}" required
               autocomplete="name" />
           </div>
         </div>
@@ -543,7 +547,7 @@
                 <polyline points="22,6 12,13 2,6"></polyline>
               </svg>
             </span>
-            <input type="email" id="signupEmail" name="email" class="form-input" placeholder="alex@example.com" required
+            <input type="email" id="signupEmail" name="email" class="form-input" placeholder="alex@example.com" value="{{ email if email else '' }}" required
               autocomplete="email" />
           </div>
         </div>

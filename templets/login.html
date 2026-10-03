@@ -537,7 +537,11 @@
                 </div>
                 <h1 class="card-title">Welcome Back</h1>
                 <p class="card-subtitle">Sign in to manage and generate your QR codes</p>
-            </header>
+            {% if error %}
+            <div style="background-color: #fee2e2; border: 1px solid #f87171; color: #991b1b; padding: 12px 16px; border-radius: var(--radius-md); margin-bottom: 20px; font-size: 0.9rem; text-align: center;">
+                {{ error }}
+            </div>
+            {% endif %}
 
             <!-- Login Form -->
             <form id="loginForm" method="POST" action="/login" novalidate>
@@ -553,8 +557,8 @@
                                 <polyline points="22,6 12,13 2,6"></polyline>
                             </svg>
                         </span>
-                        <input type="email" id="usernameOrEmail" name="username" class="form-input"
-                            placeholder="name@example.com" required autocomplete="username" />
+                        <input type="text" id="usernameOrEmail" name="username" class="form-input"
+                            placeholder="name@example.com" value="{{ username if username else '' }}" required autocomplete="username" />
                     </div>
                 </div>
 

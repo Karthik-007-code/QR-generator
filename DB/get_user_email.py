@@ -2,12 +2,13 @@ import sqlite3
 from DB.conn import get_connection
 from fastapi import HTTPException,status
 
-def get_user_db(email):
+def get_user_db(identifier: str):
     try:
         db_conn = get_connection()
         cursor = db_conn.cursor()
-        query = "SELECT * FROM users WHERE email = ?"
-        cursor.execute(query, (email,))
+        identifier_clean = identifier.strip().lower()
+        query = "SELECT * FROM users WHERE LOWER(email) = ?"
+        cursor.execute(query, (identifier_clean,))
         row = cursor.fetchone()
         if row is not None:
             return {

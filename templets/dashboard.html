@@ -196,6 +196,10 @@
             gap: 16px;
         }
 
+        .user-menu-wrapper {
+            position: relative;
+        }
+
         .user-indicator {
             display: flex;
             align-items: center;
@@ -207,6 +211,26 @@
             font-size: 0.835rem;
             color: var(--text-main);
             font-weight: 500;
+            cursor: pointer;
+            user-select: none;
+            transition: var(--transition-standard);
+        }
+
+        .user-indicator:hover, .user-indicator.active {
+            background: rgba(255, 255, 255, 0.95);
+            border-color: var(--color-primary-light);
+            box-shadow: 0 4px 12px rgba(93, 123, 111, 0.15);
+        }
+
+        .user-indicator svg.dropdown-chevron {
+            width: 14px;
+            height: 14px;
+            color: var(--text-muted);
+            transition: transform 0.2s ease;
+        }
+
+        .user-indicator.active svg.dropdown-chevron {
+            transform: rotate(180deg);
         }
 
         .user-avatar {
@@ -220,6 +244,97 @@
             justify-content: center;
             font-weight: 700;
             font-size: 0.75rem;
+        }
+
+        /* Profile Dropdown Popup */
+        .profile-dropdown {
+            position: absolute;
+            top: calc(100% + 10px);
+            right: 0;
+            width: 280px;
+            background: var(--card-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--card-border);
+            border-radius: var(--radius-md);
+            box-shadow: var(--card-shadow);
+            padding: 20px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-8px);
+            transition: var(--transition-standard);
+            z-index: 1000;
+        }
+
+        .profile-dropdown.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .profile-dropdown-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding-bottom: 14px;
+            border-bottom: 1px solid var(--color-mint);
+            margin-bottom: 14px;
+        }
+
+        .profile-dropdown-avatar {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            font-weight: 700;
+            box-shadow: 0 4px 10px rgba(93, 123, 111, 0.3);
+        }
+
+        .profile-dropdown-user-info {
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .profile-dropdown-name {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--color-primary-dark);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .profile-dropdown-email {
+            font-size: 0.775rem;
+            color: var(--text-muted);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .profile-details-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            font-size: 0.8rem;
+        }
+
+        .profile-detail-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            color: var(--text-muted);
+        }
+
+        .profile-detail-item strong {
+            color: var(--text-main);
+            font-weight: 600;
         }
 
         .logout-btn {
@@ -952,10 +1067,43 @@
             <span class="nav-title">QR Generator</span>
         </a>
         <div class="nav-right">
-            <div class="user-indicator" id="userIndicator">
-                <div class="user-avatar" id="userAvatar">U</div>
-                <span id="userEmail">user@example.com</span>
+            <div class="user-menu-wrapper" id="userMenuWrapper">
+                <div class="user-indicator" id="userIndicator" role="button" aria-expanded="false" aria-haspopup="true" tabIndex="0">
+                    <div class="user-avatar" id="userAvatar">{{ user.fullname[0]|upper if user and user.fullname else (user.email[0]|upper if user and user.email else 'U') }}</div>
+                    <span id="userEmail">{{ user.email if user and user.email else 'user@example.com' }}</span>
+                    <svg class="dropdown-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="6 9 12 15 18 9"></polyline>
+                    </svg>
+                </div>
+
+                <!-- Profile Dropdown Popup -->
+                <div class="profile-dropdown" id="profileDropdown" aria-hidden="true">
+                    <div class="profile-dropdown-header">
+                        <div class="profile-dropdown-avatar" id="dropdownAvatar">{{ user.fullname[0]|upper if user and user.fullname else (user.email[0]|upper if user and user.email else 'U') }}</div>
+                        <div class="profile-dropdown-user-info">
+                            <span class="profile-dropdown-name" id="dropdownName">{{ user.fullname if user and user.fullname else 'User' }}</span>
+                            <span class="profile-dropdown-email" id="dropdownEmail">{{ user.email if user and user.email else 'user@example.com' }}</span>
+                        </div>
+                    </div>
+                    <div class="profile-details-list">
+                        <div class="profile-detail-item">
+                            <span>Full Name:</span>
+                            <strong id="detailFullname">{{ user.fullname if user and user.fullname else 'N/A' }}</strong>
+                        </div>
+                        <div class="profile-detail-item">
+                            <span>Email:</span>
+                            <strong id="detailEmail">{{ user.email if user and user.email else 'N/A' }}</strong>
+                        </div>
+                        {% if user and user.created_at %}
+                        <div class="profile-detail-item">
+                            <span>Joined:</span>
+                            <strong id="detailJoined">{{ user.created_at }}</strong>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
             </div>
+
             <button type="button" class="logout-btn" id="logoutBtn" aria-label="Log out">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                     stroke-linejoin="round">
@@ -1547,15 +1695,45 @@
         });
 
         // ============================================================
-        // USER PROFILE INIT (read from cookie/server context)
+        // USER PROFILE POPUP TOGGLE & DISMISS
         // ============================================================
-        (function initUser() {
-            // In a Jinja template context you would use {{ email }}
-            // For standalone preview, use a placeholder
-            const email = document.body.dataset.userEmail || 'user@example.com';
-            const avatar = email.charAt(0).toUpperCase();
-            $('#userEmail').textContent = email;
-            $('#userAvatar').textContent = avatar;
+        (function initProfileDropdown() {
+            const indicator = $('#userIndicator');
+            const dropdown = $('#profileDropdown');
+            const wrapper = $('#userMenuWrapper');
+
+            if (!indicator || !dropdown) return;
+
+            function toggleDropdown(show) {
+                const isExpanded = show !== undefined ? show : !dropdown.classList.contains('show');
+                dropdown.classList.toggle('show', isExpanded);
+                indicator.classList.toggle('active', isExpanded);
+                indicator.setAttribute('aria-expanded', isExpanded ? 'true' : 'false');
+                dropdown.setAttribute('aria-hidden', isExpanded ? 'false' : 'true');
+            }
+
+            // Click email indicator to toggle popup
+            indicator.addEventListener('click', (e) => {
+                e.stopPropagation();
+                toggleDropdown();
+            });
+
+            // Keyboard navigation (Enter / Space)
+            indicator.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    toggleDropdown();
+                } else if (e.key === 'Escape') {
+                    toggleDropdown(false);
+                }
+            });
+
+            // Close when clicking anywhere outside wrapper
+            document.addEventListener('click', (e) => {
+                if (wrapper && !wrapper.contains(e.target)) {
+                    toggleDropdown(false);
+                }
+            });
         })();
     </script>
 </body>
